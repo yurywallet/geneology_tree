@@ -1,18 +1,18 @@
 GUI for the Genealogy Tree project
 
-# Description
+## Description
 This tool helps to create and visialize a geneology tree of your family.
 
 You can add/modify/delete data from the database, search and visualize.
 
-# How the tree is built?
+## How the tree is built?
 There are 2 types of relations between people:
 - between generations - parents - child (mother / father) 
 - same generation - spouse 
 
 The connection is created by adding the persons ID as a father, mother or spouse
 
-# Fields:
+## Fields:
 -	'id' unique ID of a person (required)
 -	'name' name of a person (required)
 -	'surname' surname of a person                                  
@@ -29,11 +29,11 @@ The connection is created by adding the persons ID as a father, mother or spouse
 -	'country' – current country
 -	'comments'- any extra info
 
-# Result
+## Result
 The resulting tree can be stored as PNG image
 The data can be exported as CSV or Excel files.
 
-# Project details
+## Project details
 The project is created in Python and tested on Windows 10.
 
 Language: Python

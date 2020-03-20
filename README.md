@@ -1,7 +1,7 @@
 # geneology_tree
 GUI for the Genealogy Tree project
 
-Interface that allows to draw a geneology tree.
+This tool helps to create and visialize a geneology tree of your family.
 You can add/modify/delete data.
 
 How the tree is build:
@@ -32,4 +32,9 @@ The resulting tree can be stored as PNG image
 The data can be exported as CSV or Excel files.
 
 The project is created in Python and tested on Windows 10.
+
+Language: Python
+Database: SQLite
+Visualization: pydotplus
+GUI: tkinter
 

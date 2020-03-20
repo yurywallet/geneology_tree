@@ -36,8 +36,8 @@ The data can be exported as CSV or Excel files.
 ## Project details
 The project is created in Python and tested on Windows 10.
 
-Language: Python
-Database: SQLite
-Visualization: pydotplus
-GUI: tkinter
+- Language: Python
+- Database: SQLite
+- Visualization: pydotplus
+- GUI: tkinter
 

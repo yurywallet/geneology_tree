@@ -90,14 +90,19 @@ def view():
     return rows
 
 def search(name="",surname="",date_birth="",generation=""):
+    import numpy as np
     conn=sqlite3.connect(f'{main_f}gen_tree.db')
     cur=conn.cursor()
+    
     lst=[name,surname,date_birth,generation]
     lst_n=['name','surname','date_birth','generation']
+    
     strk=''
-    for i in range(0,4):
-        if pd.notnull(lst[i]) or lst[i]!="":
-            if i==0:
+    nones=['nan', np.nan, None, "NaN", '']
+    
+    for i in range(0,len(lst)):
+        if not (pd.isnull(lst[i]) or lst[i] in nones):
+            if len(strk)==0:
                 if lst_n[i] in ['name','surname','date_birth']:
                     strk=f"{lst_n[i]}='{lst[i]}'"
                 else:
@@ -109,10 +114,12 @@ def search(name="",surname="",date_birth="",generation=""):
                     strk=f"{strk} AND {lst_n[i]}={lst[i]}" 
     
     # cur.execute("SELECT * FROM family WHERE name=? OR surname=? OR date_birth=? OR generation=?", (name,surname,date_birth,generation))
-    sql_s=f"SELECT * FROM family WHERE {strk}"
-    # print(sql_s)
-    cur.execute(sql_s)
+    if len(strk)>0:
+        sql_s=f"SELECT * FROM family WHERE {strk}"
+    else:
+        sql_s=f"SELECT * FROM family "
 
+    cur.execute(sql_s)
     rows=cur.fetchall()
     conn.close()
     return rows

@@ -3,7 +3,7 @@ import sqlite3
 # https://www.sqlite.org/datatype3.html
 
 
-main_f='C:\\a_tree\\app5_bookstore\\'
+main_f=''
 import pandas as pd
 
 

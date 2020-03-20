@@ -4,7 +4,7 @@ GUI for the Genealogy Tree project
 This tool helps to create and visialize a geneology tree of your family.
 You can add/modify/delete data.
 
-# How the tree is build
+# How the tree is built
 There are 2 types of relations between people:
 - between generations - parents - child (mother / father) 
 - same generation - spouse 

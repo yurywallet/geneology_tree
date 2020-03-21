@@ -3,7 +3,7 @@ GUI for the Genealogy Tree project
 ## Description
 This tool helps to create and visialize a geneology tree of your family.
 
-You can add/modify/delete data from the database, search and visualize.
+You can add/modify/delete data, search and visualize.
 
 ## How the tree is built?
 There are 2 types of relations between people:

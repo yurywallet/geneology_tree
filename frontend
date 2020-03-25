@@ -2,14 +2,36 @@ import tkinter as tk
 from tkinter import *
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
+# from tkinter.ttk  import *
 
-#import sys
-#main_f='C:\\a_tree\\app5_bookstore\\'
-#sys.path.append(f'{main_f}')
+import sys
+sys.setrecursionlimit(5000) 
+# print(sys.getrecursionlimit())  
 
+import os
+os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin\\'
+os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin'
+os.environ["PATH"] += os.pathsep + 'C:\\ProgramData\\Anaconda3\\Library\\bin\\graphviz\\'
+
+# style = Style()
+# style.configure("BW.TLabel", foreground="black", background="white")
+
+# style.configure('TButton', font = 
+#                ('calibri', 20, 'bold'), 
+#                     borderwidth = '4')
+# style.map('TButton', foreground = [('active', '! disabled', 'green')], 
+#                      background = [('active', 'black')]) 
+
+import sys
+main_f='C:\\a_tree\\app\\'
+sys.path.append(f'{main_f}')
 import backend
 import importlib
-import pandas as pd
+# import pandas as pd
+from pandas import DataFrame as pddf
+from pandas import isnull as isnull
+from pandas import to_numeric as to_numeric
+from pandas import notnull as notnull
 import numpy as np
 
 
@@ -110,7 +132,7 @@ to change width of column drag boundary
 
         for i in range(0,c_list.shape[0]):
             # i=1
-            self.tree.insert('', 'end', values=tuple(['' if (x in ['nan', np.nan, None, "NaN", ''] or pd.isnull(x)) else x for x in c_list.loc[i].values]))
+            self.tree.insert('', 'end', values=tuple(['' if (x in ['nan', np.nan, None, "NaN", ''] or isnull(x)) else x for x in c_list.loc[i].values]))
             # adjust column's width if necessary to fit each value
             for ix in range(len(c_header)):
                 col_w = tkFont.Font().measure(c_header[ix])
@@ -131,7 +153,7 @@ to change width of column drag boundary
         # print ('curItem = ', curItem['values'])
         # global selected_tuple
         selected_tuple=curItem['values']
-        selected_tuple=[x if str(x)!='None' and pd.notnull(x) else "" for x in selected_tuple ]
+        selected_tuple=[x if str(x)!='None' and notnull(x) else "" for x in selected_tuple ]
 
         clear_command()
         #0 'id',   
@@ -151,46 +173,46 @@ to change width of column drag boundary
         #14            'comments'
             
         def to_num(a):
-            return pd.to_numeric(a, errors='coerce', downcast='integer')
+            return to_numeric(a, errors='coerce', downcast='integer')
         
         nones=['nan', np.nan, None, "NaN", '']
         # name
-        if pd.notnull(selected_tuple[1]):
+        if notnull(selected_tuple[1]):
             val_name.insert(END,selected_tuple[1])
         #surname
-        if pd.notnull(selected_tuple[2]):
+        if notnull(selected_tuple[2]):
             val_sur.insert(END,selected_tuple[2])
         #id
-        if pd.notnull(selected_tuple[0]):
+        if notnull(selected_tuple[0]):
             val_id.insert(END,selected_tuple[0])
         # year
-        if pd.notnull(selected_tuple[3]):
+        if notnull(selected_tuple[3]):
             val_year.insert(END,selected_tuple[3])
         
         # year
         v=selected_tuple[4]
-        if not (pd.isnull(v) or v in nones):
+        if not (isnull(v) or v in nones):
             val_death.insert(END,v)
             
         v=selected_tuple[5]
-        if not (pd.isnull(v) or v in nones):
+        if not (isnull(v) or v in nones):
             val_mom.insert(END, to_num(v))
         
 
         v=selected_tuple[6]
-        if not (pd.isnull(v) or v in nones):
+        if not (isnull(v) or v in nones):
             val_fat.insert(END, to_num(v))
         
         v=selected_tuple[7]
-        if not (pd.isnull(v) or v in nones):    
+        if not (isnull(v) or v in nones):    
             val_spo.insert(END, to_num(v))
         
         v=selected_tuple[8]
-        if not (pd.isnull(v) or v in nones):    
+        if not (isnull(v) or v in nones):    
             val_gen.insert(END, to_num(v))
 
         v=selected_tuple[9]
-        if not (pd.isnull(v) or v in nones):    
+        if not (isnull(v) or v in nones):    
             val_clu.insert(END, to_num(v))
 
 
@@ -263,8 +285,8 @@ def new_command():
 def view_command():
     for i in list1.tree.get_children():
         list1.tree.delete(i)
-    list1._build_tree(c_header, pd.DataFrame(columns=c_header))
-    df=pd.DataFrame(backend.view(), columns=c_header)
+    list1._build_tree(c_header, pddf(columns=c_header))
+    df=pddf(backend.view(), columns=c_header)
     for c in ['id',   
             'mother_id',
             'father_id',
@@ -272,7 +294,7 @@ def view_command():
             'generation',
             'cluster', 
             'gender'       ]:
-        df[c]=pd.to_numeric(df[c], downcast='integer',errors='coerce')
+        df[c]=to_numeric(df[c], downcast='integer',errors='coerce')
     list1._build_tree(c_header, df)
     
     
@@ -280,8 +302,8 @@ def view_command():
 def search_command():
     for i in list1.tree.get_children():
         list1.tree.delete(i)
-    # list1._build_tree(c_header, pd.DataFrame(columns=c_header))
-    c_list=pd.DataFrame(backend.search(name_text.get(),surname_text.get(),year_text.get(),gen_text.get()), columns=c_header)
+    # list1._build_tree(c_header, pddf(columns=c_header))
+    c_list=pddf(backend.search(name_text.get(),surname_text.get(),year_text.get(),gen_text.get()), columns=c_header)
     list1._build_tree(c_header, c_list)        
 
 
@@ -355,7 +377,7 @@ def draw_tree():
     
                    
     top = tk.Tk()
-    top.iconbitmap('C:/a_tree/app5_bookstore/2683232.ico')
+    top.iconbitmap(f'{main_f}2683232.ico')
     Grid.rowconfigure(top, 0, weight=1)
     Grid.columnconfigure(top, 0, weight=1)
     top.geometry("900x480")
@@ -378,13 +400,13 @@ def draw_tree():
     # Image
         
     import pydotplus as pdt
-    from IPython.display import Image as Img_IP
-    from IPython.display import display
+    # from IPython.display import Image as Img_IP
+    # from IPython.display import display
     import time
-    import pandas as pd
+    # import pandas as pd
     # nn='yury'
     # nn='lyu'
-    df=pd.DataFrame(backend.view(), columns=c_header)
+    df=pddf(backend.view(), columns=c_header)
     
     for c in ['id',   
             'mother_id',
@@ -393,7 +415,7 @@ def draw_tree():
             'generation',
             'cluster', 
             'gender'       ]:
-        df[c]=pd.to_numeric(df[c], downcast='integer',errors='coerce')
+        df[c]=to_numeric(df[c], downcast='integer',errors='coerce')
         # df[c]=df[c].astype(int)
     
     
@@ -476,12 +498,12 @@ def draw_tree():
         if f in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==f, 'id'].values[0]}"), nod, color='#066dba'))
     
     
-        if pd.notnull(df.loc[i, 'spouse_id']):
+        if notnull(df.loc[i, 'spouse_id']):
     #         rel=df.loc[i, 'relation to']
     # #        tuple(map(int, re.findall(r'[0-9]+', rel)))
     #         rel=rel.replace('(','').replace(')','').split(',')
             # who=pd.to_numeric(rel[0]).astype(int)
-            who=pd.to_numeric(df.loc[i, 'spouse_id'], downcast='integer', errors='coerce')
+            who=to_numeric(df.loc[i, 'spouse_id'], downcast='integer', errors='coerce')
 
             # how=rel[1]
     #        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'Name'].values[0]} {df.loc[df['id']==who, 'Surname'].values[0]}"), nod,  dir='none',color='#bf3fbf')) #label='m',
@@ -495,8 +517,8 @@ def draw_tree():
         cc='orange'
         if df.loc[i, 'gender']==1: cc='#066dba'
         sstr=f"{df.loc[i, 'name']}"
-        if pd.notnull(df.loc[i, 'surname']): sstr=f"{sstr} {df.loc[i, 'surname']}"
-        if pd.notnull(df.loc[i, 'date_birth']): 
+        if notnull(df.loc[i, 'surname']): sstr=f"{sstr} {df.loc[i, 'surname']}"
+        if notnull(df.loc[i, 'date_birth']): 
             if isinstance(df.loc[i, 'date_birth'], int) or isinstance(df.loc[i, 'date_birth'], str): 
                 sstr=f"{sstr}\nB: {df.loc[i, 'date_birth']}"
             else: 
@@ -504,13 +526,16 @@ def draw_tree():
         
         d=df.loc[i, 'date_death']
         # import numpy as np
-        if not pd.isna(d): 
-            print("ddd" , pd.isna(d), pd.isnull(d), d, type(d) )
+        if notnull(d): 
+            # print("ddd" , isna(d), isnull(d), d, type(d) )
             sstr=f"{sstr}\nD: {d}"
         
-        if pd.notnull(df.loc[i, 'place_birth']): 
+        if notnull(df.loc[i, 'place_birth']): 
             sstr=f"{sstr}\nPoB: {df.loc[i, 'place_birth']} ({df.loc[i, 'country_birth']})"
         
+        if not (isnull(df.loc[i, 'comments']) or df.loc[i, 'comments']==''): 
+            sstr=f"{sstr}\nComments: {df.loc[i, 'comments']}"
+                
         nod=pdt.Node(f"{df.loc[i, 'id']}", label=sstr, shape='box', color=cc, style='rounded')
     
     #    nod=pdt.Node(f"{df.loc[i, 'id']}", label=f"{df.loc[i, 'Name']} {df.loc[i, 'Surname']}\nB: {df.loc[i, 'DoB']}\nD: {df.loc[i, 'DoD']}\nPoB: {df.loc[i, 'Place of Birth']} ({df.loc[i, 'Country of Birth']})", shape='box', color=cc, style='rounded')
@@ -581,7 +606,7 @@ def draw_tree():
 
 
 window=Tk()
-window.iconbitmap('C:/a_tree/app5_bookstore/2683232.ico')
+window.iconbitmap(f'{main_f}2683232.ico')
 # https://www.flaticon.com/free-icon/tree_2683232?term=tree&page=1&position=7
  
 window.geometry('1000x600') #size
@@ -608,7 +633,7 @@ def file_save_csv():
     f =  asksaveasfilename(title = "Select file",filetypes = (("CSV files","*.csv"),("all files","*.*")), defaultextension='.png')
     if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
         return
-    df=pd.DataFrame(backend.view(), columns=c_header)
+    df=pddf(backend.view(), columns=c_header)
     
     df.to_csv(f, index = False)
 
@@ -617,7 +642,7 @@ def file_save_xls():
     f =  asksaveasfilename(title = "Select file",filetypes = (("Excel files","*.xlsx"),("all files","*.*")), defaultextension='.png')
     if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
         return
-    df=pd.DataFrame(backend.view(), columns=c_header)
+    df=pddf(backend.view(), columns=c_header)
     import io
     df.to_excel(f, index = False)
   
@@ -804,7 +829,7 @@ l15=Label(fr5,text="Comment")
 l15.pack(side=tk.LEFT, padx=10, pady=10)
 
 comment_text=StringVar()
-val_comment=Entry(fr5,textvariable=comment_text, text="iii")
+val_comment=Entry(fr5,textvariable=comment_text)
 # e8.grid(row=2,column=3)
 val_comment.pack(side=tk.LEFT, padx=10, pady=10, expand=True, fill='both')
 
@@ -834,7 +859,7 @@ c_header=['id',
             'country',
             'comments'
                                                             ]
-c_list=pd.DataFrame(backend.view(), columns=c_header)
+c_list=pddf(backend.view(), columns=c_header)
 # c_list.loc[c_list.shape[0]]=[1]*len(c_header)
 # c_list.loc[c_list.shape[0]]=[2]*len(c_header)
 
@@ -853,29 +878,29 @@ i=10
 # frame2.pack(padx=10, pady=10)
 # , bg="orange", fg="red"
 
-b_clear=HoverButton(fr5,text="Clear Fields", width=12,command=clear_command)
+b_clear=HoverButton(fr5,text="Clear Fields", width=12,command=clear_command,  activebackground='SlateGray3')
 # b3.grid(row=i,column=0)    
 b_clear.pack(side=tk.LEFT, pady=15, padx=10)
 
-b3=HoverButton(fr5,text="Add entry", width=12,command=new_command)
+b3=HoverButton(fr5,text="Add entry", width=12,command=new_command,  activebackground='SlateGray3')
 # b3.grid(row=i,column=0)    
 b3.pack(side=tk.LEFT, pady=15, padx=10)
 
 
-b4=HoverButton(fr5,text="Update selected", width=12,command=update_command)
+b4=HoverButton(fr5,text="Update selected", width=12,command=update_command,  activebackground='SlateGray3')
 # b4.grid(row=i,column=3)
 b4.pack(side=tk.LEFT, pady=15, padx=10)
 
-b5=HoverButton(fr5,text="Delete selected", width=12,command=delete_command)
+b5=HoverButton(fr5,text="Delete selected", width=12,command=delete_command,  activebackground='SlateGray3')
 # b5.grid(row=i,column=4)
 b5.pack(side=tk.LEFT, pady=15, padx=10)
 
-b2=HoverButton(fr5,text="Search entry", width=12,command=search_command)
+b2=HoverButton(fr5,text="Search entry", width=12,command=search_command,  activebackground='SlateGray3')
 # b2.grid(row=i,column=2)
 b2.pack(side=tk.LEFT, pady=15, padx=10)
 
 
-b1=HoverButton(fr5,text="View all", width=12,command=view_command)
+b1=HoverButton(fr5,text="View all", width=12,command=view_command,  activebackground='SlateGray3')
 # b1.grid(row=i,column=1)
 b1.pack(side=tk.LEFT, pady=15, padx=10)
 
@@ -889,8 +914,44 @@ b7.pack(side=tk.LEFT, pady=15, padx=10)
 
 window.mainloop()
 
+'''settings'''
+# https://stackoverflow.com/questions/45729624/graphvizs-executables-not-found-anaconda-3
+# https://stackoverflow.com/questions/35064304/runtimeerror-make-sure-the-graphviz-executables-are-on-your-systems-path-aft
+# conda install python-graphviz
+# conda install pydotplus 
+# conda install pandas
+# conda install pillow
+# conda install -c anaconda ipython
+# conda install pyinstaller
+# pip install pypiwin32
+# conda install cython
 
-#MAKE EXE file via pyistaller
+#or 
+# pip install graphviz
+# pip install pydotplus 
+# pip install numpy
+# pip install pandas
+# pip install pillow
+# pip install ipython
+# pip install pyinstaller
+
+# Settings
+# Now you should be on the "advanced" tab of the System properties menu. Click the "Environment variables" button at the bottom of this menu -> Select path in the new menu -> Click "Edit" -> Click "New" -> In this box paste the link from your Python warning box. For me this was "C:\Users\David\Anaconda3\Library\bin\graphviz" but it may be different. Hit enter.
+# Close all programs and restart your PC. This is necessary for the new path to take effect.
+
+'''MAKE EXE file via pyistaller'''
+# https://stackoverflow.com/questions/43886822/pyinstaller-with-pandas-creates-over-500-mb-exe/48846546#48846546
+
+#1 Create virtual env
+# conda create -n pip_gentree
+# activate pip_gentree
+# cd c:\a_tree\app
+
+# run
+# python frontend_multi_g.py
+
+
 # in terminal go to folder by cd PATH
 # in terminal run
 # pyinstaller --onefile --windowed frontend_multi_g.py
+# pyinstaller --onefile frontend_multi_g.spec

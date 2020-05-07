@@ -181,5 +181,11 @@ def update(id,
     conn.commit()
     conn.close()
 
-
+def select(id):
+    conn=sqlite3.connect(f'{main_f}gen_tree.db')
+    cur=conn.cursor()
+    cur.execute("Select * FROM family WHERE id=?",(id,))
+    rows=cur.fetchall()
+    conn.close()
+    return rows
 

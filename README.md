@@ -49,7 +49,7 @@ The project is created in Python and tested on Windows 10.
 
 ## Links
 
--tkinter
+- Tkinter
 https://stackoverflow.com/questions/45729624/graphvizs-executables-not-found-anaconda-3
 https://stackoverflow.com/questions/35064304/runtimeerror-make-sure-the-graphviz-executables-are-on-your-systems-path-aft
 https://stackoverflow.com/questions/43886822/pyinstaller-with-pandas-creates-over-500-mb-exe/48846546#48846546

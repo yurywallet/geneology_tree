@@ -33,7 +33,7 @@ The connection is created by adding the persons ID as a father, mother or spouse
 The resulting tree can be stored as PNG image
 The data can be exported as CSV or Excel files.
 
-## Inteface
+## Inteface (GUI)
 - Tkinter interface
 - Flask web interface
 
@@ -44,5 +44,6 @@ The project is created in Python and tested on Windows 10.
 - Language: Python
 - Database: SQLite
 - Visualization: pydotplus
-- GUI: tkinter
+- GUI one: Tkinter
+- GUI two: Flask
 

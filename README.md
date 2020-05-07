@@ -37,7 +37,6 @@ The data can be exported as CSV or Excel files.
 - Tkinter interface
 - Flask web interface
 
-
 ## Project details
 The project is created in Python and tested on Windows 10.
 
@@ -46,6 +45,12 @@ The project is created in Python and tested on Windows 10.
 - Visualization: pydotplus
 - GUI one: Tkinter
 - GUI two: Flask 
+
+## Issues
+1)	Pyinstaller doesn’t like pandas to be included into the project (the size of the file becomes over 200MB)
+2)	Pyinstaller will generate executables only for your OS version
+3)	After creating executable visualization doesn’t work probably due to the same Graphviz problem
+
 
 ## Links
 

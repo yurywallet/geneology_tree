@@ -1,0 +1,35 @@
+<html>
+<head>
+  <link href="../static/css/main.css" rel="stylesheet">
+</head>
+  <body>
+
+
+      <div class="input">
+
+	
+	{% include 'form_cont.html' %}
+	
+      </div>
+
+
+
+<div class="ffield100" style="margin: 0 auto; text-align:center">
+<form  method="POST"   style="vertical-align: middle;" class="form" style="margin: 0 auto;">
+
+	<a href="{{ url_for('draw_tree') }}" class="btn">GROW A TREE</a>
+	  
+		  
+</form>		
+</div>	
+	  
+{% if res %}
+      <div class="output">
+        {{text|safe}}
+        {% include 'table.html' ignore missing %}
+      </div>
+{% endif %}
+	
+
+  </body>
+</html>

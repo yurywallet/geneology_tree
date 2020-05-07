@@ -1,0 +1,61 @@
+
+{% block content %}
+
+<h3>TABLE</h3>
+<div class="content-section">
+  <table id="tbl" class="tbl">
+  <thead>
+
+	<tr>
+		<th> edit</th>
+		<th> delete</th>
+		<th> id</th>
+		<th> name</th>
+		<th> surname</th>                     
+		<th> date_birth</th>
+		<th> date_death</th>
+		<th> mother_id</th>
+		<th> father_id</th>
+		<th> spouse_id</th>
+		<th> generation</th>
+		<th> cluster</th>
+		<th> gender</th>
+		<th> place_birth</th>
+		<th> country_birth</th>
+		<th> country</th>
+		<th> comments</th>
+
+		</tr>
+	</thead>
+  <tbody>
+		{% for row in res %}
+		<tr>
+		<td><a href="edit_item/{{row[0]}}" class="btn_sm">+</a></td>
+		<td>
+		  <form action="{{url_for('delete_article', id=row[0])}}" method="post"  class="btn_sm_red" style="vertical-align: middle;">
+            <input type="hidden" name="_metdod" value="DELETE">
+            <input type="submit" value="-" class="btn_sm_red">
+          </form>
+		</td>
+
+		<td> {{row[0]}}</td>
+		<td> {{row[1]}}</td>
+		<td> {{row[2]}}</td>                     
+		<td> {{row[3]}}</td>
+		<td> {{row[4]}}</td>
+		<td> {{row[5]}}</td>
+		<td> {{row[6]}}</td>
+		<td> {{row[7]}}</td>
+		<td> {{row[8]}}</td>
+		<td> {{row[9]}}</td>
+		<td> {{row[10]}}</td>
+		<td> {{row[11]}}</td>
+		<td> {{row[12]}}</td>
+		<td> {{row[13]}}</td>
+		<td> {{row[14]}}</td>
+		</tr>
+		{% endfor %}
+  </tbody>
+  </table>
+  {% endblock content %}
+			

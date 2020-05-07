@@ -1,0 +1,181 @@
+html {
+		height:100%;
+		width:100%;
+		//overflow-y: scroll;
+	}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color:#1c3144;
+  font-size: 14px;
+
+}
+
+h3, h1 {
+	text-align: center;
+	width:100%;
+	clear: both;
+}
+
+hr {
+	width:95%;
+	border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/*
+ * Formatting the header area
+ */
+
+
+
+/*
+ * Center the body content
+ */
+
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+  vertical-align: middle;
+
+}
+
+table{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,   th {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 2px;
+  font-size: 12px;
+}
+
+tr {	  vertical-align: middle;}
+tr:nth-child(even){background-color:  #dae3ed;}
+tr:hover {background-color: #abbfd4;}
+
+th {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  background-color: #1c3144;
+  color: white;
+  vertical-align: middle;
+}
+
+/*
+ * Center the body content
+ */
+
+.btn {
+         background-color:  #602F44;
+         border: none;
+         color: white;
+         padding: 10px 14px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 2px 2px;
+         cursor: pointer;
+		 vertical-align: middle;
+		 	  border-radius: 3px;
+         }
+		 
+.btn_sm {
+         background-color:  #602F44;
+         border: none;
+         color: white;
+         padding: 3px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 14px;
+         margin: auto;
+         cursor: pointer;
+		 width:14px;
+		 height:14px;
+		 vertical-align: middle;
+		 	  border-radius: 2px;
+         }
+		 
+.btn_sm_red {
+         background-color: #FF9AA2;
+         border: none;
+         color: white;
+         padding: 3px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 14px;
+         margin: auto;
+         cursor: pointer;
+		 width:14px;
+		 height:14px;
+		 vertical-align: middle;
+		 	  border-radius: 2px;
+         }
+
+.form {
+	width:95%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.ffield {
+	width: 30%;
+
+    float: left; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
+}
+.ffield_rad {
+	width: 30%;
+
+    float: left; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
+}
+
+.ffield50 {
+	width: 49%;
+    float: left; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
+}
+
+.ffield100 {
+	width: 100%;
+	/* background-color: pink; */
+    float: left; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
+}
+
+.ffield label {
+	width: 44%;
+	padding-left:5px;
+	text-align:right;
+  
+}
+.ffield input {
+	background-color: #dae3ed;
+	width: 55%;
+	text-align:left;
+	float: right; 
+	  border: 1px solid #704523;
+	  border-radius: 3px;
+	  outline: none;
+	  padding-left:5px;
+	  
+}
+
+
+

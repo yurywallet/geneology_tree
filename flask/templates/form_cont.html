@@ -1,0 +1,147 @@
+
+{% block content_from %}
+
+		<form  method="POST"  class='form'>
+		<div class="container">
+			<h1>Genealogic tree</h1>
+
+			<hr>
+			
+	{% if form %}
+
+			<div class="ffield">
+			<label for="First-Name"><b>Name</b></label>
+			<input type="text" id="First-Name" placeholder="name" name="name" value={{ form[1]|string }} required autofocus>
+			</div><div class="ffield">
+			<label for="Last-Name"><b>Surname</b></label>
+			<input type="text" id="Last-Name" placeholder="surname" name="surname" {{ form[2]|string }} >
+			</div><div class="ffield">
+			<label for="id"><b>id (unique)</b></label>
+			<input type="number" id="sid" name="id" required value={{ form[0]|int }} placeholder="id"  />
+						</div><div class="ffield">
+			<label for="mother"><b>mother_id</b></label>
+			<input type="number" id="mother_id" placeholder="id" name="mother_id"  value={{ form[5]|int }} >
+						</div><div class="ffield">
+			<label for="father_id"><b>father_id</b></label>
+			<input type="number" id="father_id" placeholder="id" name="father_id" value={{ form[6]|int }} />
+						</div><div class="ffield">
+			<label for="spouse_id"><b>spouse_id</b></label>
+			<input type="number" id="spouse_id" placeholder="id" name="spouse_id" value={{ form[7]|int }} />
+						</div><div class="ffield">
+			<label for="gen_id"><b>Generation</b>*</label>
+			<input type="number" id="gen_id" placeholder="gen_id" name="gen_id" required value={{ form[8]|int }} />
+						</div>
+			</div>			<div class="ffield">
+
+			<label for="dob"><b>Date of Birth</b></label>
+			<input type="date" id="dob" placeholder="dob" name="dob" value='{{ form[3]|string }}' />
+						</div>			<div class="ffield">
+			<label for="dod"><b>Date of Death</b></label>
+			<input type="date" id="dob" placeholder="dod" name="dod"  value='{{ form[4]|string }}' />
+								</div>			<div class="ffield">
+			<label for="PoB"><b>Place of Birth</b></label>
+			<input type="text" id="PoB" placeholder="europe" name="PoB" value='{{ form[11]|string }}' >
+								</div>			<div class="ffield">			
+			<label for="CoB"><b>Country of Birth</b></label>
+			<input type="text" id="CoB" placeholder="europe" name="CoB"  value='{{ form[12]|string }}' >
+						</div>			<div class="ffield">
+			<label for="CoL"><b>Country</b></label>
+			<input type="text" id="CoL" placeholder="europe" name="CoL" value='{{ form[13]|string }}' >
+			</div>			<div class="ffield"> 
+			<label for="cluster"><b>Cluster</b></label>
+			<input type="number" id="cluster" placeholder="id" name="cluster"  value={{ form[9]|int }}  />
+</div>		 
+			<div class="ffield_rad"> 	
+			{% if form[10]==1 %}
+				<div class="ffield50"><input type="radio" id="r1" name="gender" value=1  checked> <label for="r1">Male</label>  </div>
+				<div class="ffield50"><input type="radio" id="r2" name="gender" value=0> <label for="r2">Female</label></div>
+			{% else %}
+				<div class="ffield50"><input type="radio" id="r1" name="gender" value=1> <label for="r1">Male</label>  </div>
+				<div class="ffield50"><input type="radio" id="r2" name="gender" value=0   checked> <label for="r2">Female</label></div>
+			{% endif %}
+			</div>			<div class="ffield"> 
+			<label for="com"><b>Comment</b></label>
+			<input type="text" id="com" placeholder="europe" name="com" value='{{ form[14]|string }}' >
+			</div>		
+
+
+	{% else %}
+
+
+
+			<div class="ffield">
+			<label for="First-Name"><b>Name</b></label>
+			<input type="text" id="First-Name" placeholder="name" name="name" required>
+</div>			<div class="ffield"> 
+			<label for="Last-Name"><b>Surname</b></label>
+			<input type="text" id="Last-Name" placeholder="surname" name="surname" >
+</div>			<div class="ffield"> 
+			<label for="id"><b>id (unique)</b></label>
+			<input type="number" id="sid" placeholder="id" name="id" required />
+</div>			<div class="ffield"> 
+
+			<label for="mother"><b>mother_id</b></label>
+			<input type="number" id="mother_id" placeholder="id" name="mother_id">
+</div>			<div class="ffield"> 
+
+			<label for="father_id"><b>father_id</b></label>
+			<input type="number" id="father_id" placeholder="id" name="father_id"/>
+	</div>			<div class="ffield"> 		
+			<label for="spouse_id"><b>spouse_id</b></label>
+			<input type="number" id="spouse_id" placeholder="id" name="spouse_id"/>
+
+</div>			<div class="ffield"> 
+			
+			<label for="gen_id"><b>Generation</b>*</label>
+			<input type="number" id="gen_id" placeholder="gen_id" name="gen_id" required />
+</div>			<div class="ffield"> 
+			<label for="dob"><b>Date of Birth</b></label>
+			<input type="date" id="dob" placeholder="dob" name="dob"/>
+			</div>			<div class="ffield"> 
+			<label for="dod"><b>Date of Death</b></label>
+			<input type="date" id="dob" placeholder="dod" name="dod" />
+					</div>			<div class="ffield"> 
+			<label for="PoB"><b>Place of Birth</b></label>
+			<input type="text" id="PoB" placeholder="europe" name="PoB" >
+			</div>			<div class="ffield"> 
+			<label for="CoB"><b>Country of Birth</b></label>
+			<input type="text" id="CoB" placeholder="europe" name="CoB" >
+			</div>			<div class="ffield"> 
+			<label for="CoL"><b>Country</b></label>
+			<input type="text" id="CoL" placeholder="europe" name="CoL" >
+			</div>			<div class="ffield"> 
+			<label for="cluster"><b>Cluster</b></label>
+			<input type="number" id="cluster" placeholder="id" name="cluster"/>
+</div>			
+			<div class="ffield_rad"> 
+				<div class="ffield50"><input type="radio" id="r1" name="gender" value=1  checked> <label for="r1">Male</label>  </div>
+				<div class="ffield50"><input type="radio" id="r2" name="gender" value=0> <label for="r2">Female</label></div>
+			</div>			
+			
+			<div class="ffield"> 
+			<label for="com"><b>Comment</b></label>
+			<input type="text" id="com" placeholder="europe" name="com" >
+			</div>	
+
+
+
+
+
+
+
+	{% endif %}
+
+
+	<div class="ffield100">
+			
+		<input class="btn" type="submit" name="submit_button" value="insert">
+		<input class="btn" type="submit" name="submit_button" value="update">
+	</div>
+
+		</div>
+
+<hr>
+		</form>
+
+
+{% endblock content_from %}

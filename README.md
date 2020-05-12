@@ -39,6 +39,8 @@ The connection is created by adding the persons ID as a father, mother or spouse
 The resulting tree can be stored as PNG image
 The data can be exported as CSV or Excel files.
 
+<img src=>
+
 ## Inteface (GUI)
 - Tkinter interface
 - Flask web interface

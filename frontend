@@ -13,14 +13,7 @@ os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin\\
 os.environ["PATH"] += os.pathsep + 'C:\\Program Files (x86)\\Graphviz2.38\\bin'
 os.environ["PATH"] += os.pathsep + 'C:\\ProgramData\\Anaconda3\\Library\\bin\\graphviz\\'
 
-# style = Style()
-# style.configure("BW.TLabel", foreground="black", background="white")
 
-# style.configure('TButton', font = 
-#                ('calibri', 20, 'bold'), 
-#                     borderwidth = '4')
-# style.map('TButton', foreground = [('active', '! disabled', 'green')], 
-#                      background = [('active', 'black')]) 
 
 import sys
 main_f='C:\\a_tree\\app\\'
@@ -79,11 +72,7 @@ class BorderedEntry(ttk.Entry):
                           'sticky': 'nsew'})], 'sticky': 'nsew'})])
         style.configure(style_name, background=background,
                         foreground=foreground)
-        self.config(style=style_name)
-        
-        
-        
-        
+        self.config(style=style_name) 
         
 class MultiColumnListbox:
     
@@ -139,13 +128,7 @@ to change width of column drag boundary
                 if self.tree.column(c_header[ix],width=None)<col_w:
                     self.tree.column(c_header[ix], width=col_w)
             
-            # print (item)
-            # self.tree.insert('', 'end', values=item)
-            # # adjust column's width if necessary to fit each value
-            # for ix, val in enumerate(item):
-            #     col_w = tkFont.Font().measure(val)
-            #     if self.tree.column(c_header[ix],width=None)<col_w:
-            #         self.tree.column(c_header[ix], width=col_w)
+
     def on_tree_select(self, event):
         import numpy as np
         curItem = self.tree.item(self.tree.focus())
@@ -185,11 +168,11 @@ to change width of column drag boundary
         #id
         if notnull(selected_tuple[0]):
             val_id.insert(END,selected_tuple[0])
-        # year
+        # 
         if notnull(selected_tuple[3]):
             val_year.insert(END,selected_tuple[3])
         
-        # year
+        #
         v=selected_tuple[4]
         if not (isnull(v) or v in nones):
             val_death.insert(END,v)
@@ -230,16 +213,7 @@ to change width of column drag boundary
         val_country.insert(END,selected_tuple[13])
 
         val_comment.insert(END,selected_tuple[14])
-        
-        # return selected_tuple
-        
-        # print ('col = ', col)
-        # print("selected items:")
-        # for item in self.tree.selection():
-        #     item_text = self.tree.item(item)['text']
-        #     print(item_text)
-        
-        
+             
 def sortby(tree, col, descending):
     """sort tree contents when a column header is clicked on"""
     # grab values to sort
@@ -278,9 +252,7 @@ def new_command():
     view_command()
     
 
-    
-#         rad1.select()
-#         rad2.deselect()
+
 
 def view_command():
     for i in list1.tree.get_children():
@@ -305,8 +277,6 @@ def search_command():
     # list1._build_tree(c_header, pddf(columns=c_header))
     c_list=pddf(backend.search(name_text.get(),surname_text.get(),year_text.get(),gen_text.get()), columns=c_header)
     list1._build_tree(c_header, c_list)        
-
-
 
 
 def delete_command():
@@ -365,14 +335,6 @@ def draw_tree():
         def on_resize(self,event):     
             new_width = self.master.winfo_width()
             new_height = self.master.winfo_height()
-            
-        # def on_mousewheel(self, event):
-        #     shift = (event.state & 0x1) != 0
-        #     scroll = -1 if event.delta > 0 else 1
-        #     if shift:
-        #         self.master.xview_scroll(scroll, "units")
-        #     else:
-        #         self.master.yview_scroll(scroll, "units")
     
         #colors
     col_f='#ff4e5c'
@@ -404,12 +366,8 @@ def draw_tree():
     # Image
         
     import pydotplus as pdt
-    # from IPython.display import Image as Img_IP
-    # from IPython.display import display
     import time
-    # import pandas as pd
-    # nn='yury'
-    # nn='lyu'
+
     df=pddf(backend_app.view(), columns=c_header)
     
     for c in ['id',   
@@ -420,13 +378,6 @@ def draw_tree():
             'cluster', 
             'gender'       ]:
         df[c]=to_numeric(df[c], downcast='integer',errors='coerce')
-        # df[c]=df[c].astype(int)
-    
-    
-    
-    
-    # df=pd.read_excel('c:/a_tree/gen_tree.xlsx', sheet_name=nn)
-    # print(df)
     
     min_level=int(df['generation'].min())
     max_level=int(df['generation'].max())
@@ -438,18 +389,6 @@ def draw_tree():
     nodes=[]
     # create all edges
     
-    
-    
-    #edges = [(1,2), (1,3), (2,4), (2,5), (3,5)]
-    #nodes = [(1, "A", "r"), (2, "B", "g"), (3, "C", "g"), (4, "D", "r"), (5, "E", "g")]
-    #for e in edges:
-    #    g.add_edge(pdt.Edge(e[0], e[1], color=e[2]))
-    #    
-    #for n in nodes:
-    #    node = pdt.Node(name=n[0], label= n[1], fillcolor=n[2], style="filled" )
-    #    g.add_node(node)
-    #    
-    #    
     from ast import literal_eval as make_tuple
     nl=max_level-min_level+1
     s=[None]*(max_level+1)
@@ -458,21 +397,8 @@ def draw_tree():
     for i in range(min_level,max_level+1):
         s = pdt.Subgraph(i,rank='same')
         for j in df.loc[df['generation']==i, 'id'].values :
-    #       s.add_node(pdt.Node(f"{df.loc[df['id']==j, 'Name'].values[0]} {df.loc[df['id']==j, 'Surname'].values[0]}"))
             s.add_node(pdt.Node(f"{df.loc[df['id']==j, 'id'].values[0]}"))
         g.add_subgraph(s)
-    
-    #min_cl=df['Cluster2'].min()
-    #max_cl=df['Cluster2'].max()
-    #nl=max_cl-min_cl+1
-    #ss=[None]*(max_cl+1)
-    #for i in range(min_cl,max_cl+1):
-    #    if i>0:
-    #        ss = pdt.Cluster(f'c2_{i}', color="blue",rankdir="TB")
-    #        for j in df.loc[df['Cluster2']==i, 'id'].values :
-    #    #       s.add_node(pdt.Node(f"{df.loc[df['id']==j, 'Name'].values[0]} {df.loc[df['id']==j, 'Surname'].values[0]}"))
-    #            ss.add_node(pdt.Node(f"{df.loc[df['id']==j, 'id'].values[0]}"))
-    #        g.add_subgraph(ss)
        
     
     min_cl=int(df['cluster'].min())
@@ -482,7 +408,6 @@ def draw_tree():
     for i in range(min_cl,max_cl+1):
         ss = pdt.Cluster(f'c1_{i}', color="white",rankdir="TB")
         for j in df.loc[df['cluster']==i, 'id'].values :
-    #       s.add_node(pdt.Node(f"{df.loc[df['id']==j, 'Name'].values[0]} {df.loc[df['id']==j, 'Surname'].values[0]}"))
             ss.add_node(pdt.Node(f"{df.loc[df['id']==j, 'id'].values[0]}"))
         g.add_subgraph(ss)
       
@@ -491,28 +416,14 @@ def draw_tree():
     for i in range(df.shape[0]):
         m=df.loc[i, 'mother_id']
         f=df.loc[i, 'father_id']
-    #    if m in df['id'].values: edges.append((i,df.loc[df['id']==m, 'Name'].index[0],'orange'))
-    #    if f in df['id'].values: edges.append((i,df.loc[df['id']==f, 'Name'].index[0],'blue'))  
-    #    nodes.append((i, df.loc[i, 'Name'], 'blue'))
-    
-    
-    #    nod=pdt.Node(f"{df.loc[i, 'id']}",label=f"{df.loc[i, 'Name']} {df.loc[i, 'Surname']}",  shape='record', color="blue", style='rounded')
         nod=pdt.Node(f"{df.loc[i, 'id']}",  shape='record', color=col_m, style='rounded')
         if m in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==m, 'id'].values[0]}"), nod, color=col_f))
         if f in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==f, 'id'].values[0]}"), nod, color=col_m))
     
     
         if notnull(df.loc[i, 'spouse_id']):
-    #         rel=df.loc[i, 'relation to']
-    # #        tuple(map(int, re.findall(r'[0-9]+', rel)))
-    #         rel=rel.replace('(','').replace(')','').split(',')
-            # who=pd.to_numeric(rel[0]).astype(int)
             who=to_numeric(df.loc[i, 'spouse_id'], downcast='integer', errors='coerce')
-
-            # how=rel[1]
-    #        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'Name'].values[0]} {df.loc[df['id']==who, 'Surname'].values[0]}"), nod,  dir='none',color='#bf3fbf')) #label='m',
             if who in df['id'].values:
-                # print('yes')
                 g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'id'].values[0]}"), nod,  dir='none',color=col_w)) #label='m',
     
     
@@ -542,7 +453,6 @@ def draw_tree():
                 
         nod=pdt.Node(f"{df.loc[i, 'id']}", label=sstr, shape='box', color=cc, style='rounded')
     
-    #    nod=pdt.Node(f"{df.loc[i, 'id']}", label=f"{df.loc[i, 'Name']} {df.loc[i, 'Surname']}\nB: {df.loc[i, 'DoB']}\nD: {df.loc[i, 'DoD']}\nPoB: {df.loc[i, 'Place of Birth']} ({df.loc[i, 'Country of Birth']})", shape='box', color=cc, style='rounded')
         g.add_node(nod)
     
     
@@ -552,28 +462,12 @@ def draw_tree():
     # plt.savefig(buf, format='png')
     buf.seek(0)
     img_g = Image_PIL.open(buf)
-    
-    # img=Img_IP(g.create_png())
-    # img=g.create_png()
-    
-    
-    
-    
-    
-    
-    # x='c:\\a_tree\\fTree_lyu.png'
-    # img = Image_PIL.open(x)
-    # img = img.resize((250, 250), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(img_g, master=frame)
     canvas.create_image(0, 0, image=img)
     
     #scrollconfig
     canvas.config(scrollregion=canvas.bbox(tk.ALL))
     
-    
-            
-            
-            
     xscrollbar.config(command=canvas.xview)
     yscrollbar.config(command=canvas.yview)
     
@@ -596,9 +490,7 @@ def draw_tree():
             return
         img_g.save(f)
 
-    
-    
-    
+
     menu.add_command(label='Save',command=file_save)
     
     menu.add_command(label='Close',command=top.destroy)
@@ -615,20 +507,11 @@ window.iconbitmap(f'{main_f}2683232.ico')
 window.geometry('1000x600') #size
 window.wm_title("GenTree")
 
-# canvas = tk.Canvas(window)
-# canvas.create_rectangle(30, 10, 120, 80, 
-#     outline="#fb0", fill="#fb0")
-# canvas.pack(fill=tk.BOTH, expand=1)
-
-
 #menu
 menubar = Menu(window)
 window.config(menu=menubar)
 
-
-
 menu = Menu(menubar)
-
 
 def file_save_csv():
 
@@ -655,49 +538,42 @@ menu.add_command(label='Close',command=window.destroy)
 
 # menu.add_command(label="Exit", command=window.quit)
 menubar.add_cascade(label="File", menu=menu)
-#
 
-# frame1 = Frame(window)
-# frame1.pack(padx=10, pady=10, side="top", fill="both", expand=True)
+
+
 ''' first raw'''
 fr1 = Frame(window)
 fr1.pack(fill=X, side=TOP)
 
 l1=Label(fr1,text="Name          ")
 l1.pack(side=tk.LEFT, padx=10, pady=10)
-# l1.grid(row=0,column=0)
 
 name_text=StringVar()
 val_name=BorderedEntry(fr1,bordercolor='tomato', textvariable=name_text)
 val_name.pack(side=tk.LEFT, padx=10, pady=10)
-# e1.grid(row=0,column=1)
+
 
 l2=Label(fr1,text="Surname   ")
 l2.pack(side=tk.LEFT, padx=10, pady=10)
-# l2.grid(row=0,column=2)
+
 
 surname_text=StringVar()
 val_sur=Entry(fr1,textvariable=surname_text)
-# e2.grid(row=0,column=3)
 val_sur.pack(side=tk.LEFT, padx=10, pady=10)
 
 l4=Label(fr1,text="Date of Birth")
-# l4.grid(row=1,column=0)
 l4.pack(side=tk.LEFT, padx=10, pady=10)
 
 year_text=StringVar()
 val_year=Entry(fr1,textvariable=year_text)
-# e4.grid(row=1,column=1)
 val_year.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 l3=Label(fr1,text="ID", width=5)
-# l3.grid(row=0,column=4)
 l3.pack(side=tk.LEFT, padx=10, pady=10)
 
 id_text=StringVar()
 val_id=BorderedEntry(fr1 ,bordercolor='tomato' ,textvariable=id_text)
-# e3.grid(row=0,column=5)
 val_id.pack(side=tk.LEFT, padx=10, pady=10)
 
 ''' second row '''
@@ -705,41 +581,33 @@ fr2 = Frame(window)
 fr2.pack(fill=X, side=TOP)
 
 l5=Label(fr2,text="Mother (ID)") #, style="BW.TLabel"
-# l5.grid(row=1,column=2)
 l5.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 mom_id=StringVar()
 val_mom=Entry(fr2,textvariable=mom_id)
-# e5.grid(row=1,column=3)
 val_mom.pack(side=tk.LEFT, padx=10, pady=10)
 
 l6=Label(fr2,text="Father (ID)")
-# l6.grid(row=1,column=4)
 l6.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 fath_id=StringVar()
 val_fat=Entry(fr2,textvariable=fath_id)
-# e6.grid(row=1,column=5)
 val_fat.pack(side=tk.LEFT, padx=10, pady=10)
 
 l7=Label(fr2,text="Generation   ")
-# l7.grid(row=2,column=0)
 l7.pack(side=tk.LEFT, padx=10, pady=10)
 
 gen_text=StringVar()
 val_gen=BorderedEntry(fr2, bordercolor='tomato',textvariable=gen_text)
-# e7.grid(row=2,column=1)
 val_gen.pack(side=tk.LEFT, padx=10, pady=10)
 
 l8=Label(fr2,text="Cluster", width=5)
-# l8.grid(row=2,column=2)
 l8.pack(side=tk.LEFT, padx=10, pady=10)
 
 cluster_text=StringVar()
 val_clu=BorderedEntry(fr2,bordercolor='tomato',textvariable=cluster_text)
-# e8.grid(row=2,column=3)
 val_clu.pack(side=tk.LEFT, padx=10, pady=10)
 
 ''' third row '''
@@ -747,12 +615,10 @@ fr3 = Frame(window)
 fr3.pack(fill=X, side=TOP)
 
 l9=Label(fr3,text="Spouse (ID)")
-# l9.grid(row=2,column=4)
 l9.pack(side=tk.LEFT, padx=10, pady=10)
 
 spouse_id=StringVar()
 val_spo=Entry(fr3,textvariable=spouse_id)
-# e9.grid(row=2,column=5)
 val_spo.pack(side=tk.LEFT, padx=10, pady=10)
 
 
@@ -767,49 +633,30 @@ rad2 = Radiobutton(fr3,text='Female', value=0, variable=gender)
 rad1.select()
 rad1.pack(side=tk.LEFT, padx=10, pady=10)
 rad2.pack(side=tk.LEFT, padx=10, pady=10)
-# rad1.grid(row=3, column=0)
-# rad2.grid(row=3, column=1)
 
 l10=Label(fr3,text="Place of Birth") #, style="BW.TLabel"
-# l5.grid(row=1,column=2)
 l10.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 place_text=StringVar()
 val_place=Entry(fr3,textvariable=place_text)
-# e5.grid(row=1,column=3)
 val_place.pack(side=tk.LEFT, padx=10, pady=10)
 
 l11=Label(fr3,text="Country of Birth")
-# l6.grid(row=1,column=4)
 l11.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 country_birth=StringVar()
 val_countryB=Entry(fr3,textvariable=country_birth)
-# e6.grid(row=1,column=5)
+
 val_countryB.pack(side=tk.LEFT, padx=10, pady=10)
 
-
-# list1=Listbox(window, height=6,width=35)
-
-
-# list1.grid(row=4,column=0,rowspan=6,columnspan=4)
-
-# sb1=Scrollbar(window)
-# sb1.grid(row=4,column=4,rowspan=6)
-
-# list1.configure(yscrollcommand=sb1.set)
-# sb1.configure(command=list1.yview)
-
-# list1.bind('<<ListboxSelect>>',get_selected_row)
 ''' extra row '''
 fr5 = Frame(window)
 fr5.pack(fill=X, side=TOP)
 
 
 l12=Label(fr5,text="Country      ")
-# l7.grid(row=2,column=0)
 l12.pack(side=tk.LEFT, padx=10, pady=10)
 
 country_text=StringVar()
@@ -818,28 +665,19 @@ val_country.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 l14=Label(fr5,text="Date of Death")
-# l4.grid(row=1,column=0)
 l14.pack(side=tk.LEFT, padx=10, pady=10)
 
 yearDeath_text=StringVar()
 val_death=Entry(fr5,textvariable=yearDeath_text)
-# e4.grid(row=1,column=1)
 val_death.pack(side=tk.LEFT, padx=10, pady=10)
 
 
 l15=Label(fr5,text="Comment")
-# l8.grid(row=2,column=2)
 l15.pack(side=tk.LEFT, padx=10, pady=10)
 
 comment_text=StringVar()
 val_comment=Entry(fr5,textvariable=comment_text)
-# e8.grid(row=2,column=3)
 val_comment.pack(side=tk.LEFT, padx=10, pady=10, expand=True, fill='both')
-
-
-
-
-
 
 
 ''' forth row '''
@@ -863,8 +701,6 @@ c_header=['id',
             'comments'
                                                             ]
 c_list=pddf(backend.view(), columns=c_header)
-# c_list.loc[c_list.shape[0]]=[1]*len(c_header)
-# c_list.loc[c_list.shape[0]]=[2]*len(c_header)
 
 list1 = MultiColumnListbox(c_header, c_list)
 
@@ -874,46 +710,28 @@ fr5.pack(fill=X, side=TOP)
 
 # '''Buttons'''
 
-i=10
-# frame2 = tk.LabelFrame(window, text='Horizontal layout', 
-#     relief=tk.GROOVE)
-
-# frame2.pack(padx=10, pady=10)
-# , bg="orange", fg="red"
-
 b_clear=HoverButton(fr5,text="Clear Fields", width=12,command=clear_command,  activebackground='SlateGray3')
-# b3.grid(row=i,column=0)    
 b_clear.pack(side=tk.LEFT, pady=15, padx=10)
 
-b3=HoverButton(fr5,text="Add entry", width=12,command=new_command,  activebackground='SlateGray3')
-# b3.grid(row=i,column=0)    
+b3=HoverButton(fr5,text="Add entry", width=12,command=new_command,  activebackground='SlateGray3') 
 b3.pack(side=tk.LEFT, pady=15, padx=10)
 
 
 b4=HoverButton(fr5,text="Update selected", width=12,command=update_command,  activebackground='SlateGray3')
-# b4.grid(row=i,column=3)
 b4.pack(side=tk.LEFT, pady=15, padx=10)
 
 b5=HoverButton(fr5,text="Delete selected", width=12,command=delete_command,  activebackground='SlateGray3')
-# b5.grid(row=i,column=4)
 b5.pack(side=tk.LEFT, pady=15, padx=10)
 
 b2=HoverButton(fr5,text="Search entry", width=12,command=search_command,  activebackground='SlateGray3')
-# b2.grid(row=i,column=2)
 b2.pack(side=tk.LEFT, pady=15, padx=10)
 
 
 b1=HoverButton(fr5,text="View all", width=12,command=view_command,  activebackground='SlateGray3')
-# b1.grid(row=i,column=1)
 b1.pack(side=tk.LEFT, pady=15, padx=10)
 
 b7=HoverButton(fr5,text="Grow a Tree", width=12,command=draw_tree,  activebackground='SlateGray3')
-# b7.grid(row=i,column=6)
 b7.pack(side=tk.LEFT, pady=15, padx=10)
-
-# b8=Button(window,text="Close", width=12,command=window.destroy)
-# b8.grid(row=10,column=5)
-
 
 window.mainloop()
 

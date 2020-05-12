@@ -1,4 +1,9 @@
-GUI for the Genealogy Tree project
+# Building Genealogy tree GUI with Python
+If you ever tried to collect and organize the data about your family members you will agree that it is not that easy to finish that in one go as it seems from the first glance. I believe that everyone has seen at least once these nicely-organized trees of royal dynasties in history books. 
+<img style="float: center;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/900-158_Ahnentafel_Herzog_Ludwig.jpg/450px-900-158_Ahnentafel_Herzog_Ludwig.jpg">
+
+Having such image in mind you will probably start with drawing bubbles and filling them with names - starting with you, your parents and siblings as I did. And then you start to collect all the information from your family members and from this point  things start to become more complicated and from a simple “cave painting” the task turns into geo-positioning of the second wives and the third husbands between siblings and cousins of a left branch of your grandfather’s sister’s family. So you create a new version, scale it make it look nicer… you share the photo of this map with you relatives and then receive an info about somebody that you’ve missed to include and you need to insert her or him right into the middle of the tree… 
+Actually, when you go deeper and wider it becomes quite messy and position all the nodes and branches. Moreover, you probably will want to have some extended information to be present like a life span, education, profession, country and city where your ancestors came from and so on that you also need to organize somehow.
 
 ## Description
 This tool helps to create and visialize a geneology tree of your family.
@@ -21,7 +26,7 @@ The connection is created by adding the persons ID as a father, mother or spouse
 -	'mother_id' unique ID of a mother, needed to draw connections
 -	'father_id' unique ID of a father, needed to draw connections
 -	'spouse_id' unique ID of a spouse, needed to draw connections                                   
--	'generation' – if fro you it is 10, then for your parents it is 9 (required)
+-	'generation' – if for you it is 10, then for your parents it is 9 (required)
 -	'cluster' – by default 1, for larger trees helps to organize it better (required)
 -	'gender' – gender 
 -	'place_birth' –place of birth (city, town, etc.)

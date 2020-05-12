@@ -39,11 +39,13 @@ The connection is created by adding the persons ID as a father, mother or spouse
 The resulting tree can be stored as PNG image
 The data can be exported as CSV or Excel files.
 
-<img src=>
+<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1.png">
 
 ## Inteface (GUI)
 - Tkinter interface
+<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree_tkinter.png">
 - Flask web interface
+<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree_flask.png">
 
 ## Project details
 The project is created in Python and tested on Windows 10.
@@ -58,7 +60,6 @@ The project is created in Python and tested on Windows 10.
 1)	Pyinstaller doesn’t like pandas to be included into the project (the size of the file becomes over 200MB)
 2)	Pyinstaller will generate executables only for your OS version
 3)	After creating executable visualization doesn’t work probably due to the same Graphviz problem
-
 
 ## Links
 

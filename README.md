@@ -43,9 +43,9 @@ The data can be exported as CSV or Excel files.
 
 ## Inteface (GUI)
 - Tkinter interface
-<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree_tkinter.png">
+<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1_tkinter.png">
 - Flask web interface
-<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree_flask.png">
+<img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1_flask.png">
 
 ## Project details
 The project is created in Python and tested on Windows 10.

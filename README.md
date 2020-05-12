@@ -42,9 +42,9 @@ The data can be exported as CSV or Excel files.
 <img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1.png">
 
 ## Inteface (GUI)
-- Tkinter interface
+- Tkinter interface (frontend.py)
 <img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1_tkinter.png">
-- Flask web interface
+- Flask web interface (flask run app.py)
 <img src="https://github.com/yurywallet/geneology_tree/blob/master/img/tree1_flask.png">
 
 ## Project details

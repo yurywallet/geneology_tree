@@ -374,7 +374,11 @@ def draw_tree():
         #     else:
         #         self.master.yview_scroll(scroll, "units")
     
-    
+        #colors
+    col_f='#ff4e5c'
+    col_m='#1c3144'
+    col_w='#9d7a7d'
+    #
                    
     top = tk.Tk()
     top.iconbitmap(f'{main_f}2683232.ico')
@@ -406,7 +410,7 @@ def draw_tree():
     # import pandas as pd
     # nn='yury'
     # nn='lyu'
-    df=pddf(backend.view(), columns=c_header)
+    df=pddf(backend_app.view(), columns=c_header)
     
     for c in ['id',   
             'mother_id',
@@ -493,9 +497,9 @@ def draw_tree():
     
     
     #    nod=pdt.Node(f"{df.loc[i, 'id']}",label=f"{df.loc[i, 'Name']} {df.loc[i, 'Surname']}",  shape='record', color="blue", style='rounded')
-        nod=pdt.Node(f"{df.loc[i, 'id']}",  shape='record', color="blue", style='rounded')
-        if m in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==m, 'id'].values[0]}"), nod, color='orange'))
-        if f in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==f, 'id'].values[0]}"), nod, color='#066dba'))
+        nod=pdt.Node(f"{df.loc[i, 'id']}",  shape='record', color=col_m, style='rounded')
+        if m in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==m, 'id'].values[0]}"), nod, color=col_f))
+        if f in df['id'].values:        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==f, 'id'].values[0]}"), nod, color=col_m))
     
     
         if notnull(df.loc[i, 'spouse_id']):
@@ -509,13 +513,13 @@ def draw_tree():
     #        g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'Name'].values[0]} {df.loc[df['id']==who, 'Surname'].values[0]}"), nod,  dir='none',color='#bf3fbf')) #label='m',
             if who in df['id'].values:
                 # print('yes')
-                g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'id'].values[0]}"), nod,  dir='none',color='#bf3fbf')) #label='m',
+                g.add_edge(pdt.Edge(pdt.Node(f"{df.loc[df['id']==who, 'id'].values[0]}"), nod,  dir='none',color=col_w)) #label='m',
     
     
     
     for i in  range(df.shape[0]):
-        cc='orange'
-        if df.loc[i, 'gender']==1: cc='#066dba'
+        cc=col_f
+        if df.loc[i, 'gender']==1: cc=col_m
         sstr=f"{df.loc[i, 'name']}"
         if notnull(df.loc[i, 'surname']): sstr=f"{sstr} {df.loc[i, 'surname']}"
         if notnull(df.loc[i, 'date_birth']): 
@@ -602,7 +606,6 @@ def draw_tree():
     menubar.add_cascade(label="File", menu=menu)
 
     top.mainloop()
-    
 
 
 window=Tk()

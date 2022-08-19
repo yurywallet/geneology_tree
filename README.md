@@ -62,6 +62,8 @@ The project is created in Python and tested on Windows 10.
 3)	After creating executable visualization doesn’t work probably due to the same Graphviz problem
 
 ## Links
+[Article at medium](https://medium.com/@yurywallet/building-genealogy-tree-gui-with-python-is-it-easy-404dbd376302)
+
 
 Tkinter
 
@@ -73,5 +75,6 @@ Tkinter
 Flask
 
 - https://www.youtube.com/watch?v=Us9DuF4KWUE
+
 and the code for it
 - https://github.com/bradtraversy/myflaskapp

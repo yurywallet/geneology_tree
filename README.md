@@ -78,3 +78,24 @@ Flask
 
 and the code for it
 - https://github.com/bradtraversy/myflaskapp
+
+## Setup
+- https://stackoverflow.com/questions/45729624/graphvizs-executables-not-found-anaconda-3
+- https://stackoverflow.com/questions/35064304/runtimeerror-make-sure-the-graphviz-executables-are-on-your-systems-path-aft
+- conda install python-graphviz
+- conda install pydotplus 
+- conda install pandas
+- conda install pillow
+- conda install -c anaconda ipython
+- conda install pyinstaller
+- pip install pypiwin32
+- conda install cython
+
+or 
+- pip install graphviz
+- pip install pydotplus 
+- pip install numpy
+- pip install pandas
+- pip install pillow
+- pip install ipython
+- pip install pyinstaller
